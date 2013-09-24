@@ -17,7 +17,7 @@ module HTML2Markdown
       if ele.is_a? Nokogiri::XML::Text
         return "#{ele.text}\n"
       else
-        if (children = ele.children).count > 0 
+        if (children = ele.children).count > 0
           return wrap_node(ele,children.map {|ele| parse_element(ele)}.join )
         else
           return wrap_node(ele,ele.text)
@@ -41,7 +41,7 @@ module HTML2Markdown
       when 'script'
       when 'style'
       when 'li'
-        result << "*#{contents}\n"
+        result << "- #{contents}\n"
       when 'blockquote'
         contents.split('\n').each do |part|
           result << ">#{contents}\n"
